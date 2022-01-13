@@ -27,4 +27,9 @@ public class UserController {
         users.add(new User("Ada", "Lovelace"));
         return users;
     }
+
+    @GetMapping("/test")
+    public String printTestMsg() {
+        return "<h1>Another test</h1>";
+    }
 }
