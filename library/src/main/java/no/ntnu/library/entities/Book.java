@@ -19,7 +19,7 @@ public class Book {
      * if not
      */
     public boolean isValid() {
-        return id > 0;
+        return (id > 0 && !this.title.isEmpty() && this.year > 0 && this.numberOfPages > 0);
     }
 
     /**

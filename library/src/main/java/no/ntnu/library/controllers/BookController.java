@@ -52,6 +52,44 @@ public class BookController {
         return response;
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteBook(@PathVariable Integer id) {
+        ResponseEntity<String> response;
+        Book book = findBookById(id);
+        if (book != null) {
+            this.books.remove(book);
+            response = new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return response;
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateBook(@PathVariable Integer id, @RequestBody Book book) {
+        ResponseEntity<String> response;
+
+        // Check if book is in collection
+        Book existingBook = findBookById(id);
+        if (existingBook != null) {
+            // Check if book is valid
+            if (book.isValid() && book.getId() == id) {
+                // Update book
+                this.books.remove(existingBook);
+                this.books.add(book);
+                response = new ResponseEntity<>(HttpStatus.OK);
+            } else {
+                // Return bad request msg
+                response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+        } else {
+            // Return not found msg
+            response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return response;
+    }
+
     /**
      * Finds book in the collection by id. If not book was
      * found {@code null} will be returned.
