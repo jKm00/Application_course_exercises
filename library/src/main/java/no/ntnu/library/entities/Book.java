@@ -1,16 +1,58 @@
 package no.ntnu.library.entities;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
 public class Book {
     private int id;
     private String title;
     private int year;
     private int numberOfPages;
+    private List<Integer> authors;
 
     public Book(int id, String title, int year, int numberOfPages) {
         this.setId(id);
         this.setTitle(title);
         this.setYear(year);
         this.setNumberOfPages(numberOfPages);
+        this.authors = new LinkedList<>();
+    }
+
+    /**
+     * Returns a list with all authors of the book
+     * @return authors of the book
+     */
+    public List<Integer> getAuthors() {
+        return this.getAuthors();
+    }
+
+    /**
+     * Checks if the book has an author with authorId given.
+     * @param authorId the id of the author
+     * @return {@code true} if the book as an author with that id,
+     * {@code false} otherwise.
+     */
+    public boolean hasAuthor(int authorId) {
+        boolean authorFound = false;
+        Iterator<Integer> it = this.authors.iterator();
+        while (!authorFound && it.hasNext()) {
+            if (it.next() == authorId) {
+                authorFound = true;
+            }
+        }
+        return authorFound;
+    }
+
+    /**
+     * Adds an author to the authors list. If the author
+     * is already in the list, nothing will be added.
+     * @param authorId the id of the author to be added.
+     */
+    public void addAuthor(int authorId) {
+        if (!this.hasAuthor(authorId)) {
+            this.authors.add(authorId);
+        }
     }
 
     /**

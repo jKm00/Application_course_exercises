@@ -1,5 +1,6 @@
 package no.ntnu.library.controllers;
 
+import no.ntnu.library.entities.Author;
 import no.ntnu.library.entities.Book;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -111,9 +112,21 @@ public class BookController {
 
     private void initializeData() {
         this.books = new LinkedList<>();
-        this.books.add(new Book(1, "The Nordic Theory", 2019, 204));
-        this.books.add(new Book(2, "How To Talk To Absolutly Eberyone", 2005, 154));
-        this.books.add(new Book(3, "The Alchemist", 2012, 85));
-        this.books.add(new Book(4, "They Both Dia At the End", 2021, 312));
+        Book book1 = new Book(1, "The Nordic Theory", 2019, 204);
+        book1.addAuthor(1);
+        book1.addAuthor(3);
+        this.books.add(book1);
+        Book book2 = new Book(2, "How To Talk To Absolutly Eberyone", 2005, 154);
+        book2.addAuthor(1);
+        book2.addAuthor(2);
+        this.books.add(book2);
+        Book book3 = new Book(3, "The Alchemist", 2012, 85);
+        book3.addAuthor(4);
+        this.books.add(book3);
+        Book book4 = new Book(4, "They Both Dia At the End", 2021, 312);
+        book4.addAuthor(1);
+        book4.addAuthor(2);
+        book4.addAuthor(3);
+        this.books.add(book4);
     }
 }
