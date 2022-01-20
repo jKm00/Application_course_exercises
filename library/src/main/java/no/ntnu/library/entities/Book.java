@@ -14,6 +14,15 @@ public class Book {
     }
 
     /**
+     * Checks if the object is a valid book
+     * @return {@code true} is its valid, {@code false}
+     * if not
+     */
+    public boolean isValid() {
+        return id > 0;
+    }
+
+    /**
      * Returns the id of the book
      * @return the id of the book
      */
