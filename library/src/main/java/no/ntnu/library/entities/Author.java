@@ -14,6 +14,16 @@ public class Author {
     }
 
     /**
+     * Checks is the author is valid. Needs an id over 0,
+     * firstName and lastName cannot be empty and birthYear
+     * has to be over 0.
+     * @return {@code true} if author is valid, {@code false} otherwise.
+     */
+    public boolean isValid() {
+        return this.id > 0 && !this.firstName.isEmpty() && !this.lastName.isEmpty() && this.birthYear > 0;
+    }
+
+    /**
      * Returns the id of the author
      * @return the id of the author
      */
@@ -45,9 +55,6 @@ public class Author {
      * @param firstName of the author
      */
     public void setFirstName(String firstName) {
-        if (firstName.isEmpty()) {
-            throw new IllegalArgumentException("First name cannot be empty");
-        }
         this.firstName = firstName;
     }
 
@@ -64,9 +71,6 @@ public class Author {
      * @param lastName of the author
      */
     public void setLastName(String lastName) {
-        if (lastName.isEmpty()) {
-            throw new IllegalArgumentException("Last name cannot be empty");
-        }
         this.lastName = lastName;
     }
 
