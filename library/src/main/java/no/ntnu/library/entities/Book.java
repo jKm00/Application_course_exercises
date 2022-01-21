@@ -24,7 +24,7 @@ public class Book {
      * @return authors of the book
      */
     public List<Integer> getAuthors() {
-        return this.getAuthors();
+        return this.authors;
     }
 
     /**

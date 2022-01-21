@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @RestController
-@RequestMapping("books")
+@RequestMapping("/books")
 public class BookController {
     private List<Book> books;
 
@@ -19,9 +19,35 @@ public class BookController {
         this.initializeData();
     }
 
+    // Should maybe break this function in to separate functions
     @GetMapping("")
-    public List<Book> getAllBooks() {
-        return this.books;
+    public List<Book> getAllBooks(@RequestParam(required = false) Integer authorId, @RequestParam(required = false) Integer minPages) {
+        List<Book> booksFound;
+        if (authorId == null && minPages == null) {
+            booksFound = this.books;
+        } else if (minPages == null) {
+            booksFound = new LinkedList<>();
+            for (Book book : this.books) {
+                if (book.hasAuthor(authorId)) {
+                    booksFound.add(book);
+                }
+            }
+        } else if (authorId == null) {
+            booksFound = new LinkedList<>();
+            for (Book book : this.books) {
+                if (book.getNumberOfPages() > minPages) {
+                    booksFound.add(book);
+                }
+            }
+        } else {
+            booksFound = new LinkedList<>();
+            for (Book book : this.books) {
+                if (book.hasAuthor(authorId) && book.getNumberOfPages() > minPages) {
+                    booksFound.add(book);
+                }
+            }
+        }
+        return booksFound;
     }
 
     @GetMapping("/{id}")
