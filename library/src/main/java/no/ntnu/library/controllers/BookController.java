@@ -19,7 +19,17 @@ public class BookController {
         this.initializeData();
     }
 
-    // Should maybe break this function in to separate functions
+    /**
+     * Returns a list of books with all the books matching the
+     * filters. If no filter is given all books are returned.
+     * @param authorId, the id of the author. If author id is
+     *                  given, only books written by that author
+     *                  is returned.
+     * @param minPages, number of minimum pages. If minPages is
+     *                  given, only books with that amount of pages
+     *                  or more will be returned.
+     * @return a list of books matching the filter given.
+     */
     @GetMapping("")
     public List<Book> getAllBooks(@RequestParam(required = false) Integer authorId, @RequestParam(required = false) Integer minPages) {
         List<Book> booksFound;
@@ -50,6 +60,11 @@ public class BookController {
         return booksFound;
     }
 
+    /**
+     * Returns a book with the id given as param.
+     * @param id the id of the book.
+     * @return a book with the given id.
+     */
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBook(@PathVariable Integer id) {
         ResponseEntity<Book> response;
@@ -62,6 +77,12 @@ public class BookController {
         return response;
     }
 
+    /**
+     * Adds a book
+     * @param book the book to be added
+     * @return {@code 200 OK} if book was added, {@code 400 BAD REQUEST}
+     * otherwise.
+     */
     @PostMapping
     public ResponseEntity<String> addBook(@RequestBody Book book) {
         ResponseEntity<String> response;
@@ -79,6 +100,12 @@ public class BookController {
         return response;
     }
 
+    /**
+     * Deletes a book
+     * @param id id of the book to be deleted
+     * @return {@code 200 OK} if book was deleted, {@code 404 NOT FOUND}
+     * if book wasn't found and couldn't be deleted.
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteBook(@PathVariable Integer id) {
         ResponseEntity<String> response;
@@ -92,6 +119,14 @@ public class BookController {
         return response;
     }
 
+    /**
+     * Updates a book
+     * @param id the id of the book to be updated
+     * @param book the updated version of the book
+     * @return {@code 200 OK} if book was successfully updated,
+     * {@code 400 BAD REQUEST} if the updated book is not valid,
+     * {@code 404 NOT FOUND} if there are no books with the id given.
+     */
     @PutMapping("/{id}")
     public ResponseEntity<String> updateBook(@PathVariable Integer id, @RequestBody Book book) {
         ResponseEntity<String> response;
