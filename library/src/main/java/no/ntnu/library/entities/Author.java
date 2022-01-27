@@ -1,9 +1,15 @@
 package no.ntnu.library.entities;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class Author {
+    @ApiModelProperty(notes = "The unique id of the author")
     private int id;
+    @ApiModelProperty(notes ="The first name of the author")
     private String firstName;
+    @ApiModelProperty(notes ="The last name of the author")
     private String lastName;
+    @ApiModelProperty(notes ="The year the author was born")
     private int birthYear;
 
     public Author(int id, String firstName, String lastName, int birthYear) {

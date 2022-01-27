@@ -1,5 +1,8 @@
 package no.ntnu.library.controllers;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import no.ntnu.library.entities.Author;
 import no.ntnu.library.entities.Book;
 import org.springframework.http.HttpStatus;
@@ -31,7 +34,14 @@ public class BookController {
      * @return a list of books matching the filter given.
      */
     @GetMapping("")
-    public List<Book> getAllBooks(@RequestParam(required = false) Integer authorId, @RequestParam(required = false) Integer minPages) {
+    @ApiOperation(value = "Returns all the book in the library",
+        notes = "If an author id or a minimum number of pages is specified, only books with these specifications will be returned",
+        response = Book.class,
+        responseContainer = "List")
+    public List<Book> getAllBooks(@ApiParam(value = "Filter for only getting books written by the author with the given author id")
+                                      @RequestParam(required = false) Integer authorId,
+                                  @ApiParam(value = "Filter for only getting books with a minimum amount of pages as specified")
+                                  @RequestParam(required = false) Integer minPages) {
         List<Book> booksFound;
         if (authorId == null && minPages == null) {
             booksFound = this.books;
@@ -66,7 +76,12 @@ public class BookController {
      * @return a book with the given id.
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Book> getBook(@PathVariable Integer id) {
+    @ApiOperation(value = "Find book by id",
+        notes = "Returns a book with the id given in the URL",
+        response = Book.class,
+        responseContainer = "ResponseEntity")
+    public ResponseEntity<Book> getBook(@ApiParam(value = "Id for the book you need to retrieve")
+                                            @PathVariable Integer id) {
         ResponseEntity<Book> response;
         Book book = this.findBookById(id);
         if (book != null) {
@@ -84,7 +99,11 @@ public class BookController {
      * otherwise.
      */
     @PostMapping
-    public ResponseEntity<String> addBook(@RequestBody Book book) {
+    @ApiOperation(value = "Adds a book to the library",
+        notes = "Adds the book object provided to the library",
+        response = String.class)
+    public ResponseEntity<String> addBook(@ApiParam(value = "A book object that will be added to the library")
+                                              @RequestBody Book book) {
         ResponseEntity<String> response;
         if (book != null && book.isValid()) {
             Book existingBook = this.findBookById(book.getId());
@@ -107,7 +126,10 @@ public class BookController {
      * if book wasn't found and couldn't be deleted.
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteBook(@PathVariable Integer id) {
+    @ApiOperation(value = "Deletes a book from the library",
+        notes = "Delete a book with a specific id from the library")
+    public ResponseEntity<String> deleteBook(@ApiParam(value = "The id of the book that should be deleted")
+                                                 @PathVariable Integer id) {
         ResponseEntity<String> response;
         Book book = findBookById(id);
         if (book != null) {
@@ -128,7 +150,13 @@ public class BookController {
      * {@code 404 NOT FOUND} if there are no books with the id given.
      */
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateBook(@PathVariable Integer id, @RequestBody Book book) {
+    @ApiOperation(value = "Updates a book",
+        notes = "Updates a book with a new book object containing the updated information",
+        response = String.class)
+    public ResponseEntity<String> updateBook(@ApiParam(value = "The id of the book that should be updated")
+                                                 @PathVariable Integer id,
+                                             @ApiParam("The new book object containing the updated information")
+                                             @RequestBody Book book) {
         ResponseEntity<String> response;
 
         // Check if book is in collection

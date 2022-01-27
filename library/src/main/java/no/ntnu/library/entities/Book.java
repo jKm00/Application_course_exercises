@@ -1,14 +1,21 @@
 package no.ntnu.library.entities;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Book {
+    @ApiModelProperty(notes ="The unique id of the book")
     private int id;
+    @ApiModelProperty(notes ="The title of the book")
     private String title;
+    @ApiModelProperty(notes ="The year the book was published")
     private int year;
+    @ApiModelProperty(notes ="The number of pages the book contains")
     private int numberOfPages;
+    @ApiModelProperty(notes ="A list of all the author who wrote the book")
     private List<Integer> authors;
 
     public Book(int id, String title, int year, int numberOfPages) {
