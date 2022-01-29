@@ -141,6 +141,11 @@ public class BookController {
         return response;
     }
 
+    @GetMapping("/count")
+    public ResponseEntity<Integer> getNumberOfBooks() {
+        return new ResponseEntity<>(this.books.size(), HttpStatus.OK);
+    }
+
     /**
      * Updates a book
      * @param id the id of the book to be updated
