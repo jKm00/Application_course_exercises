@@ -1,5 +1,6 @@
 package no.ntnu.library;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -9,8 +10,12 @@ public class JDBCLogic {
         Connection con = null;
         try {
             Class.forName("org.sqlite.JDBC");
-            String databaseUrl = "jdbc:sqlite:libraryDB.db";
-            con = DriverManager.getConnection(databaseUrl); // Connect to database
+            // Get URL to database file
+            URL databaseUrl = JDBCLogic.class.getClassLoader().getResource("libraryDB.db");
+            // Make sure databaseUrl points to a file
+            assert databaseUrl != null;
+            // Connect to database
+            con = DriverManager.getConnection("jdbc:sqlite:" + databaseUrl.toString()); // Connect to database
             System.out.println("Connected to database");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e + "");
