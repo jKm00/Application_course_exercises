@@ -15,7 +15,7 @@ public class JDBCLogic {
             // Make sure databaseUrl points to a file
             assert databaseUrl != null;
             // Connect to database
-            con = DriverManager.getConnection("jdbc:sqlite:" + databaseUrl.toString()); // Connect to database
+            con = DriverManager.getConnection("jdbc:sqlite:" + String.valueOf(databaseUrl)); // Connect to database
             System.out.println("Connected to database");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e + "");
