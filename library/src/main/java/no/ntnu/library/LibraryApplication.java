@@ -18,7 +18,7 @@ import java.util.Collections;
 public class LibraryApplication {
 
 	public static void main(String[] args) {
-		JDBCLogic.connect();
+		JDBCLogic jdbcLogic = new JDBCLogic();
 		SpringApplication.run(LibraryApplication.class, args);
 	}
 
