@@ -11,7 +11,6 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.util.Collection;
 import java.util.Collections;
 
 @SpringBootApplication
@@ -19,7 +18,7 @@ import java.util.Collections;
 public class LibraryApplication {
 
 	public static void main(String[] args) {
-		DbConnection.connect();
+		JDBCLogic.connect();
 		SpringApplication.run(LibraryApplication.class, args);
 	}
 
