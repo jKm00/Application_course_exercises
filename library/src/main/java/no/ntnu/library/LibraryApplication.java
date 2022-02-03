@@ -19,6 +19,7 @@ import java.util.Collections;
 public class LibraryApplication {
 
 	public static void main(String[] args) {
+		DbConnection.connect();
 		SpringApplication.run(LibraryApplication.class, args);
 	}
 
