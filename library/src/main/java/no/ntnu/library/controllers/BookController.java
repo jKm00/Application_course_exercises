@@ -33,6 +33,7 @@ public class BookController {
      *                  or more will be returned.
      * @return a list of books matching the filter given.
      */
+    @CrossOrigin
     @GetMapping("")
     @ApiOperation(value = "Returns all the book in the library",
         notes = "If an author id or a minimum number of pages is specified, only books with these specifications will be returned",
@@ -98,6 +99,7 @@ public class BookController {
      * @return {@code 200 OK} if book was added, {@code 400 BAD REQUEST}
      * otherwise.
      */
+    @CrossOrigin
     @PostMapping
     @ApiOperation(value = "Adds a book to the library",
         notes = "Adds the book object provided to the library",
