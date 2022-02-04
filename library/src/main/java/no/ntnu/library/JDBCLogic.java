@@ -20,7 +20,7 @@ public class JDBCLogic {
         try {
             Class.forName("org.sqlite.JDBC");
             // Get URL to database file
-            URL databaseUrl = JDBCLogic.class.getClassLoader().getResource("libraryDB.db");
+            URL databaseUrl = this.getClass().getClassLoader().getResource("libraryDB.db");
             // Make sure databaseUrl points to a file
             assert databaseUrl != null;
             // Connect to database
