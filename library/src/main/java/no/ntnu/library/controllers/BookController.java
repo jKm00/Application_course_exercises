@@ -76,6 +76,7 @@ public class BookController {
      * @param id the id of the book.
      * @return a book with the given id.
      */
+    @CrossOrigin
     @GetMapping("/{id}")
     @ApiOperation(value = "Find book by id",
         notes = "Returns a book with the id given in the URL",
