@@ -1,4 +1,4 @@
-package no.ntnu.library.entities;
+package no.ntnu.library.model.entities;
 
 import io.swagger.annotations.ApiModelProperty;
 

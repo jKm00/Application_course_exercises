@@ -1,6 +1,6 @@
 package no.ntnu.library.controllers;
 
-import no.ntnu.library.entities.Author;
+import no.ntnu.library.model.entities.Author;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

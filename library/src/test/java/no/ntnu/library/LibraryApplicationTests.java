@@ -1,7 +1,7 @@
 package no.ntnu.library;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import no.ntnu.library.entities.Book;
+import no.ntnu.library.model.entities.Book;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

@@ -1,14 +1,14 @@
 package no.ntnu.library.controllers;
 
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import no.ntnu.library.entities.Author;
-import no.ntnu.library.entities.Book;
+import no.ntnu.library.model.entities.Book;
+import no.ntnu.library.model.registers.BookRegister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.InvalidObjectException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,10 +16,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/books")
 public class BookController {
-    private List<Book> books;
+    private BookRegister bookRegister;
 
     public BookController() {
-        this.initializeData();
+        this.bookRegister = new BookRegister();
     }
 
     /**
@@ -45,28 +45,13 @@ public class BookController {
                                   @RequestParam(required = false) Integer minPages) {
         List<Book> booksFound;
         if (authorId == null && minPages == null) {
-            booksFound = this.books;
+            booksFound = this.bookRegister.getAllBooks();
         } else if (minPages == null) {
-            booksFound = new LinkedList<>();
-            for (Book book : this.books) {
-                if (book.hasAuthor(authorId)) {
-                    booksFound.add(book);
-                }
-            }
+            booksFound = this.bookRegister.getBooksByAuthorId(authorId);
         } else if (authorId == null) {
-            booksFound = new LinkedList<>();
-            for (Book book : this.books) {
-                if (book.getNumberOfPages() > minPages) {
-                    booksFound.add(book);
-                }
-            }
+            booksFound = this.bookRegister.getBooksByMinPages(minPages);
         } else {
-            booksFound = new LinkedList<>();
-            for (Book book : this.books) {
-                if (book.hasAuthor(authorId) && book.getNumberOfPages() > minPages) {
-                    booksFound.add(book);
-                }
-            }
+            booksFound = this.bookRegister.getBooksByMinPagesAndAuthorId(minPages, authorId);
         }
         return booksFound;
     }
@@ -85,7 +70,7 @@ public class BookController {
     public ResponseEntity<Book> getBook(@ApiParam(value = "Id for the book you need to retrieve")
                                             @PathVariable Integer id) {
         ResponseEntity<Book> response;
-        Book book = this.findBookById(id);
+        Book book = this.bookRegister.getBookById(id);
         if (book != null) {
             response = new ResponseEntity<>(book, HttpStatus.OK);
         } else {
@@ -108,14 +93,8 @@ public class BookController {
     public ResponseEntity<String> addBook(@ApiParam(value = "A book object that will be added to the library")
                                               @RequestBody Book book) {
         ResponseEntity<String> response;
-        if (book != null && book.isValid()) {
-            Book existingBook = this.findBookById(book.getId());
-            if (existingBook == null) {
-                this.books.add(book);
-                response = new ResponseEntity<>(HttpStatus.OK);
-            } else {
-                response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-            }
+        if (this.bookRegister.addBook(book)) {
+            response = new ResponseEntity<>(HttpStatus.OK);
         } else {
             response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -131,13 +110,12 @@ public class BookController {
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Deletes a book from the library",
         notes = "Delete a book with a specific id from the library")
-    public ResponseEntity<String> deleteBook(@ApiParam(value = "The id of the book that should be deleted")
+    public ResponseEntity<Book> deleteBook(@ApiParam(value = "The id of the book that should be deleted")
                                                  @PathVariable Integer id) {
-        ResponseEntity<String> response;
-        Book book = findBookById(id);
-        if (book != null) {
-            this.books.remove(book);
-            response = new ResponseEntity<>(HttpStatus.OK);
+        ResponseEntity<Book> response;
+        Book deletedBook = this.bookRegister.deleteBook(id);
+        if (deletedBook != null) {
+            response = new ResponseEntity<>(deletedBook, HttpStatus.OK);
         } else {
             response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -146,7 +124,7 @@ public class BookController {
 
     @GetMapping("/count")
     public ResponseEntity<Integer> getNumberOfBooks() {
-        return new ResponseEntity<>(this.books.size(), HttpStatus.OK);
+        return new ResponseEntity<>(this.bookRegister.getBookCount(), HttpStatus.OK);
     }
 
     /**
@@ -167,63 +145,16 @@ public class BookController {
                                              @RequestBody Book book) {
         ResponseEntity<String> response;
 
-        // Check if book is in collection
-        Book existingBook = findBookById(id);
-        if (existingBook != null) {
-            // Check if book is valid
-            if (book.isValid() && book.getId() == id) {
-                // Update book
-                this.books.remove(existingBook);
-                this.books.add(book);
+        try {
+            if (this.bookRegister.updateBook(id, book)) {
                 response = new ResponseEntity<>(HttpStatus.OK);
             } else {
-                // Return bad request msg
-                response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
-        } else {
-            // Return not found msg
-            response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (InvalidObjectException e) {
+            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         return response;
-    }
-
-    /**
-     * Finds book in the collection by id. If not book was
-     * found {@code null} will be returned.
-     * @param id the id of the book to be found
-     * @return the book with the id given, or {@code null} if
-     * no book was found in the collection
-     */
-    private Book findBookById(int id) {
-        Book bookFound = null;
-        Iterator<Book> it = this.books.iterator();
-        while (bookFound == null && it.hasNext()) {
-            Book book = it.next();
-            if (book.getId() == id) {
-                bookFound = book;
-            }
-        }
-        return bookFound;
-    }
-
-    private void initializeData() {
-        this.books = new LinkedList<>();
-        Book book1 = new Book(1, "The Nordic Theory", 2019, 204);
-        book1.addAuthor(1);
-        book1.addAuthor(3);
-        this.books.add(book1);
-        Book book2 = new Book(2, "How To Talk To Absolutely Everyone", 2005, 154);
-        book2.addAuthor(1);
-        book2.addAuthor(2);
-        this.books.add(book2);
-        Book book3 = new Book(3, "The Alchemist", 2012, 85);
-        book3.addAuthor(4);
-        this.books.add(book3);
-        Book book4 = new Book(4, "They Both Die At the End", 2021, 312);
-        book4.addAuthor(1);
-        book4.addAuthor(2);
-        book4.addAuthor(3);
-        this.books.add(book4);
     }
 }
