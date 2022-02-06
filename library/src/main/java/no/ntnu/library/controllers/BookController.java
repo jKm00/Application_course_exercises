@@ -213,14 +213,14 @@ public class BookController {
         book1.addAuthor(1);
         book1.addAuthor(3);
         this.books.add(book1);
-        Book book2 = new Book(2, "How To Talk To Absolutly Eberyone", 2005, 154);
+        Book book2 = new Book(2, "How To Talk To Absolutely Everyone", 2005, 154);
         book2.addAuthor(1);
         book2.addAuthor(2);
         this.books.add(book2);
         Book book3 = new Book(3, "The Alchemist", 2012, 85);
         book3.addAuthor(4);
         this.books.add(book3);
-        Book book4 = new Book(4, "They Both Dia At the End", 2021, 312);
+        Book book4 = new Book(4, "They Both Die At the End", 2021, 312);
         book4.addAuthor(1);
         book4.addAuthor(2);
         book4.addAuthor(3);
