@@ -23,6 +23,7 @@ public class AuthorController {
         return this.authors;
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity<Author> getAuthorById(@PathVariable Integer id) {
         ResponseEntity<Author> response;
