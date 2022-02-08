@@ -21,6 +21,10 @@ public class User {
         this.creationDate = new Date();
     }
 
+    public boolean isValid() {
+        return (!this.username.isEmpty() && !this.email.isEmpty() && !this.password.isEmpty());
+    }
+
     public String getUsername() {
         return username;
     }
