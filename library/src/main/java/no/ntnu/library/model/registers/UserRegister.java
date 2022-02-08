@@ -2,7 +2,9 @@ package no.ntnu.library.model.registers;
 
 import no.ntnu.library.model.entities.User;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class UserRegister {
     private HashMap<String, User> users;
@@ -45,5 +47,9 @@ public class UserRegister {
      */
     public int size() {
         return this.users.size();
+    }
+
+    public User[] getUsers() {
+       return (User[]) this.users.values().toArray(new User[0]);
     }
 }

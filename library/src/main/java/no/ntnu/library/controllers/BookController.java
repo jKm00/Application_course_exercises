@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/books")
 public class BookController {
-    private BookRegister bookRegister;
+    private final BookRegister bookRegister;
 
     public BookController() {
         this.bookRegister = new BookRegister();
