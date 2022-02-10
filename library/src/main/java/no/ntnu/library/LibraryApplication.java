@@ -13,6 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.net.URL;
 import java.util.Collections;
+import java.util.List;
 
 @SpringBootApplication
 @EnableSwagger2
@@ -24,10 +25,15 @@ public class LibraryApplication {
 	public static void main(String[] args) {
 		JdbcConnection connection = JdbcConnection.getInstance();
 		try {
-			URL databaseUrl;
-			databaseUrl = LibraryApplication.class.getClassLoader().getResource("libraryDB.db");
-			connection.connect(databaseUrl);
+			String databaseName = "libraryDB.db";
+			connection.connect(databaseName);
 			System.out.println("Connected to database");
+			String bookTitle = "East of Eden";
+			List<String> borrowerNames = connection.getBorrowerNames(bookTitle);
+			System.out.println(bookTitle + " was borrowed by:");
+			for (String borrower : borrowerNames) {
+				System.out.println("    * " + borrower);
+			}
 		} catch (Exception e) {
 			System.out.println("Could not connect to database: " + e.getMessage());
 		}

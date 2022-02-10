@@ -1,8 +1,10 @@
 package no.ntnu.library;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Class responsible for communication with SQL database.
@@ -34,14 +36,14 @@ public class JdbcConnection {
 
     /**
      * Connects to the database
-     * @param databaseUrl the url to the database
+     * @param databaseName the url to the database
      * @throws Exception Throws exception when connection not successful
      */
-    public void connect(URL databaseUrl) throws Exception {
-        if (databaseUrl == null) {
-            throw new IllegalArgumentException("Invalid URL");
+    public void connect(String databaseName) throws Exception {
+        if (databaseName == null) {
+            throw new IllegalArgumentException("Invalid database name");
         }
-        this.connection = DriverManager.getConnection("jdbc:sqlite:" + String.valueOf(databaseUrl));
+        this.connection = DriverManager.getConnection("jdbc:sqlite:" + databaseName);
     }
 
     /**
@@ -50,6 +52,75 @@ public class JdbcConnection {
      */
     public boolean isConnected() {
         return connection != null;
+    }
+
+    /**
+     * Execute an UPDATE for the database - update title for a book
+     * @param bookId ID of the book to be updated
+     * @param title The new title to set for the book
+     * @throws Exception on error
+     */
+    public void updateBookTitle(int bookId, String title) throws Exception {
+        String[] parameters = new String[]{title, "" + bookId};
+        executeUpdateStatement("UPDATE books SET title = ? WHERE bookID = ?", parameters);
+    }
+
+    /**
+     * Gets the name of borrowers who borrowed a book with the given title
+     * @param bookTitle The book title of interest
+     * @return List of all the borrower names
+     * @throws SQLException Exception on error
+     */
+    public List<String> getBorrowerNames(String bookTitle) throws SQLException {
+        String query = "SELECT bb.firstName\n" +
+                "FROM books b\n" +
+                "INNER JOIN lentBooks l ON b.bookID = l.bookID\n" +
+                "INNER JOIN borrowers bb ON l.borrowerID = bb.borrowerID\n" +
+                "WHERE b.title = ?";
+        return executeStringListSelectQuery(query, new String[]{bookTitle});
+    }
+
+    /**
+     * Execute a query which returns a list of strings (a single-column table)
+     * @param query The SQL query
+     * @param values Values to replace the ? placeholders
+     * @return List of strings, returned as rows from SQL
+     * @throws SQLException Exception on error
+     */
+    public List<String>  executeStringListSelectQuery(String query, String[] values) throws SQLException {
+        PreparedStatement stmt = prepareStatement(query, values);
+        ResultSet rs = stmt.executeQuery();
+        List<String> responseStrings = new ArrayList<>();
+        while (rs.next()) {
+            responseStrings.add(rs.getString(1));
+        }
+        return responseStrings;
+    }
+
+    /**
+     * Execute an SQL statement which updates the state of the database
+     * @param query SQL query, with ? in places of arguments (E.g. SELECT * FROM books WHERE bookID = ?)
+     * @param values List of values to replace the ? placeholders in the query
+     */
+    private void executeUpdateStatement(String query, String[] values) throws Exception {
+        if (!isConnected()) throw new Exception("No connection to the database");
+        PreparedStatement stmt = prepareStatement(query, values);
+        stmt.executeUpdate();
+    }
+
+    /**
+     * Prepare a statement for a given query and arguments
+     * @param query SQL query
+     * @param args Values to replace the "?" placeholder
+     * @return PreparedStatement
+     * @throws SQLException Exception on error
+     */
+    private PreparedStatement prepareStatement(String query, String[] args) throws SQLException {
+        PreparedStatement stmt = connection.prepareStatement(query);
+        for (int i = 0; i < args.length; i++) {
+            stmt.setString(i + 1, args[i]);
+        }
+        return stmt;
     }
 
 }
