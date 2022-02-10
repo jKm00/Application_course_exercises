@@ -11,14 +11,26 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.net.URL;
 import java.util.Collections;
 
 @SpringBootApplication
 @EnableSwagger2
 public class LibraryApplication {
 
+	/**
+	 * Main method
+	 */
 	public static void main(String[] args) {
-		JDBCLogic jdbcLogic = new JDBCLogic();
+		JdbcConnection connection = JdbcConnection.getInstance();
+		try {
+			URL databaseUrl;
+			databaseUrl = LibraryApplication.class.getClassLoader().getResource("libraryDB.db");
+			connection.connect(databaseUrl);
+			System.out.println("Connected to database");
+		} catch (Exception e) {
+			System.out.println("Could not connect to database: " + e.getMessage());
+		}
 		SpringApplication.run(LibraryApplication.class, args);
 	}
 
@@ -32,6 +44,10 @@ public class LibraryApplication {
 				.apiInfo(apiDetails());
 	}
 
+	/**
+	 * Details for swagger documentations
+	 * @return ApiInfo for the swagger documentation
+	 */
 	private ApiInfo apiDetails() {
 		return new ApiInfo(
 				"AppDev Library Experiment",
