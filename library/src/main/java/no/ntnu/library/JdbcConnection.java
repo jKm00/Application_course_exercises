@@ -1,5 +1,8 @@
 package no.ntnu.library;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +12,11 @@ import java.util.List;
  * This class makes use of the singleton pattern. To get an
  * instance simple call the static method "getInstance()"
  */
+@Component
 public class JdbcConnection {
+    @Value("${db.name}")
+    private String dbName; // Currently doesn't get imported
+
     private Connection connection;
 
     /**
