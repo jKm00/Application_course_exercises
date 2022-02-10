@@ -1,9 +1,7 @@
 package no.ntnu.library;
 
-import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -35,15 +33,19 @@ public class JdbcConnection {
     }
 
     /**
-     * Connects to the database
-     * @param databaseName the url to the database
+     * Establish connection to the database
+     *
      * @throws Exception Throws exception when connection not successful
      */
-    public void connect(String databaseName) throws Exception {
-        if (databaseName == null) {
-            throw new IllegalArgumentException("Invalid database name");
+    public boolean connect() {
+        if (connection == null) {
+            try {
+                this.connection = DriverManager.getConnection("jdbc:sqlite:libraryDB.db");
+            } catch (SQLException e) {
+                connection = null;
+            }
         }
-        this.connection = DriverManager.getConnection("jdbc:sqlite:" + databaseName);
+        return connection != null;
     }
 
     /**
@@ -52,6 +54,10 @@ public class JdbcConnection {
      */
     public boolean isConnected() {
         return connection != null;
+    }
+
+    public boolean tryConnect() {
+        return connect();
     }
 
     /**
@@ -123,4 +129,15 @@ public class JdbcConnection {
         return stmt;
     }
 
+    public String getBookTitle(Integer id) throws Exception {
+        String query = "SELECT title FROM books WHERE bookID = ?";
+        String[] parameters = new String[]{"" + id};
+        return executeStringSelectQuery(query, parameters);
+    }
+
+    private String executeStringSelectQuery(String query, String[] values) throws SQLException {
+        PreparedStatement stmt = prepareStatement(query, values);
+        ResultSet rs = stmt.executeQuery();
+        return rs.getString(1);
+    }
 }
