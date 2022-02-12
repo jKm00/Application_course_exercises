@@ -16,6 +16,10 @@ public class Employee {
     public Employee() {
     }
 
+    public boolean isValid() {
+        return this.firstName != null && this.lastName != null && !this.firstName.isEmpty() && !this.lastName.isEmpty();
+    }
+
     public Employee(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
