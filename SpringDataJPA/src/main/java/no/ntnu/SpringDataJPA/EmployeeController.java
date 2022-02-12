@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/employees")
@@ -27,6 +28,11 @@ public class EmployeeController {
         return employees;
     }
 
+    @GetMapping("/{id}")
+    public Employee getEmployee(@PathVariable Long id) {
+        return this.findEmployeeById(id);
+    }
+
     @PostMapping
     public ResponseEntity<String> addEmployee(@RequestBody Employee employee) {
         ResponseEntity<String> response;
@@ -37,6 +43,28 @@ public class EmployeeController {
             response = new ResponseEntity<>("Invalid employee", HttpStatus.BAD_REQUEST);
         }
         return response;
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Employee> deleteEmployee(@PathVariable Long id) {
+        ResponseEntity<Employee> response;
+        try {
+            Employee employee = this.findEmployeeById(id);
+            this.repository.deleteById(id);
+            response = new ResponseEntity<>(employee, HttpStatus.OK);
+        } catch (Exception e) {
+            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return response;
+    }
+
+    private Employee findEmployeeById(Long id) {
+        Employee employee = null;
+        Optional<Employee> result = this.repository.findById(id);
+        if (result.isPresent()) {
+            employee = result.get();
+        }
+        return employee;
     }
 
 }
