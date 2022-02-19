@@ -62,4 +62,13 @@ public class UserService {
         user.ifPresent(value -> userRepository.delete(value));
         return user.isPresent();
     }
+
+    /**
+     * Search for a user by its username.
+     * @param username the username to search for.
+     * @return the user found or {@code null} if no user is found.
+     */
+    public User getUser(String username) {
+        return userRepository.findByUsername(username);
+    }
 }

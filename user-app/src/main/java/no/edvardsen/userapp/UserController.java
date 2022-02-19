@@ -25,6 +25,24 @@ public class UserController {
     }
 
     /**
+     * Get a user by username
+     * @param username the username of the user
+     * @return the user found or NOT FOUND if no user is found
+     */
+    @CrossOrigin
+    @GetMapping("/{username}")
+    public ResponseEntity<User> getUser(@PathVariable String username) {
+        ResponseEntity<User> response;
+        User user = userService.getUser(username);
+        if (user != null) {
+            response = new ResponseEntity<>(user, HttpStatus.OK);
+        } else {
+            response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return response;
+    }
+
+    /**
      * Add a user to the register
      * @param user the user to be added, from HTTP response body
      * @return {@code 200 OK} on success, {@code 400 BAD REQUEST} on error

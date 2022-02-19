@@ -7,4 +7,5 @@ import org.springframework.data.repository.CrudRepository;
  * Spring will auto-generate necessary methods.
  */
 public interface UserRepository extends CrudRepository<User, Integer> {
+    User findByUsername(String username);
 }
