@@ -47,7 +47,8 @@ public class UserController {
      * @param user the user to be added, from HTTP response body
      * @return {@code 200 OK} on success, {@code 400 BAD REQUEST} on error
      */
-    @PostMapping
+    @CrossOrigin
+    @PostMapping(consumes = {"application/json"})
     public ResponseEntity<String> add(@RequestBody User user) {
         ResponseEntity<String> response;
         if (userService.add(user)) {
