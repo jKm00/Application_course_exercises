@@ -69,4 +69,17 @@ public class UserController {
         }
         return response;
     }
+
+    @CrossOrigin
+    @PostMapping("/login")
+    public ResponseEntity<User> tryLogin(@RequestBody User user) {
+        ResponseEntity<User> response;
+        User userToCheck = this.userService.getUser(user.getUsername());
+        if (userToCheck != null && user.getPassword().equals(userToCheck.getPassword())) {
+            response = new ResponseEntity<>(userToCheck, HttpStatus.OK);
+        } else {
+            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return response;
+    }
 }
