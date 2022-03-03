@@ -1,5 +1,6 @@
 package no.ntnu.edvardsem.hikingtest;
 
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +8,7 @@ import javax.persistence.GeneratedValue;
 @Entity
 public class Customer {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private int customerId;
     private String firstname;
     private String lastname;
