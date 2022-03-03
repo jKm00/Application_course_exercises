@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Represents an order made from the web-shop
+ */
 @Entity
 @Table(name = "orders")
 public class Order {
@@ -11,6 +14,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    // Order can have many products
     @ManyToMany
     @JoinTable(
             name = "order_product",
@@ -19,6 +23,7 @@ public class Order {
     )
     private Set<Product> products;
 
+    // Order can only have one customer
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;

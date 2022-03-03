@@ -3,6 +3,9 @@ package no.ntnu.edvardsem.hikingtest;
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * Represents a product for the web-shop
+ */
 @Entity
 @Table(name = "products")
 public class Product {
@@ -14,6 +17,7 @@ public class Product {
     private int price;
     private int count;
 
+    // Products can be in many orders
     @ManyToMany(mappedBy = "products")
     private Set<Order> orders;
 

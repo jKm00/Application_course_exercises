@@ -3,6 +3,9 @@ package no.ntnu.edvardsem.hikingtest;
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * Represents a customer from the web-shop
+ */
 @Entity
 @Table(name = "customers")
 public class Customer {
@@ -12,6 +15,7 @@ public class Customer {
     private String firstname;
     private String lastname;
 
+    // Customer can have many orders
     @OneToMany(mappedBy = "customer")
     private Set<Order> orders;
 

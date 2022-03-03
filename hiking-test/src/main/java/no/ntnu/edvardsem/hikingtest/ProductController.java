@@ -9,12 +9,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * REST API controller for products collection
+ */
 @RestController
 @RequestMapping("/products")
 public class ProductController {
     @Autowired
     private ProductService service;
 
+    /**
+     * Returns all the products in the database
+     * @return all products in database
+     */
     @GetMapping
     public ResponseEntity<List<Product>> getProducts() {
         return new ResponseEntity<>(this.service.getProducts(), HttpStatus.OK);
