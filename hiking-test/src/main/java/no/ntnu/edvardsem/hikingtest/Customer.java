@@ -1,17 +1,19 @@
 package no.ntnu.edvardsem.hikingtest;
 
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
+@Table(name = "customers")
 public class Customer {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private int customerId;
+    private int id;
     private String firstname;
     private String lastname;
+
+    @OneToMany(mappedBy = "customer")
+    private Set<Order> orders;
 
     public Customer() {}
 
@@ -21,11 +23,11 @@ public class Customer {
     }
 
     public int getCustomerId() {
-        return customerId;
+        return id;
     }
 
     public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+        this.id = customerId;
     }
 
     public String getFirstname() {

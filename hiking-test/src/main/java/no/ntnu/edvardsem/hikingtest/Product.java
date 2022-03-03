@@ -1,66 +1,68 @@
 package no.ntnu.edvardsem.hikingtest;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
+@Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private int productId;
-    private String productName;
-    private String productDescription;
-    private int productPrice;
-    private int productCount;
+    private int id;
+    private String name;
+    private String description;
+    private int price;
+    private int count;
+
+    @ManyToMany(mappedBy = "products")
+    private Set<Order> orders;
 
     public Product() {}
 
-    public Product(String productName, String productDescription, int productPrice, int productCount) {
-        this.productName = productName;
-        this.productDescription = productDescription;
-        this.productPrice = productPrice;
-        this.productCount = productCount;
+    public Product(String name, String description, int price, int count) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.count = count;
     }
 
-    public int getProductId() {
-        return productId;
+    public int getId() {
+        return id;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getName() {
+        return name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getProductDescription() {
-        return productDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public int getProductPrice() {
-        return productPrice;
+    public int getPrice() {
+        return price;
     }
 
-    public void setProductPrice(int productPrice) {
-        this.productPrice = productPrice;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
-    public int getProductCount() {
-        return productCount;
+    public int getCount() {
+        return count;
     }
 
-    public void setProductCount(int productCount) {
-        this.productCount = productCount;
+    public void setCount(int count) {
+        this.count = count;
     }
 }
