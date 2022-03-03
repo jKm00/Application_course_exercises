@@ -30,6 +30,11 @@ public class Order {
 
     public Order() {}
 
+    public Order(Set<Product> products, Customer customer) {
+        this.products = products;
+        this.customer = customer;
+    }
+
     public int getId() {
         return id;
     }
