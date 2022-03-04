@@ -14,6 +14,8 @@ import org.springframework.stereotype.Component;
 public class DummyDataInitializer implements ApplicationListener<ApplicationReadyEvent> {
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private CustomerRepository customerRepository;
 
     private final Logger logger = LoggerFactory.getLogger("DummyInit");
 
@@ -36,6 +38,10 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
         productRepository.save(boots);
         productRepository.save(sweater);
         productRepository.save(hat);
+
+        Customer customer1 = new Customer("Joakim", "Edvardsen");
+
+        customerRepository.save(customer1);
 
         logger.info("Finished importing dummy data...");
     }

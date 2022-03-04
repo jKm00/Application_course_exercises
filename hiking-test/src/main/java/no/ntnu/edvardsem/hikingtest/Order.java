@@ -1,6 +1,7 @@
 package no.ntnu.edvardsem.hikingtest;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -13,6 +14,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    private String state;
 
     // Order can have many products
     @ManyToMany
@@ -30,9 +32,10 @@ public class Order {
 
     public Order() {}
 
-    public Order(Set<Product> products, Customer customer) {
-        this.products = products;
+    public Order(Customer customer, String state) {
         this.customer = customer;
+        this.state = state;
+        this.products = new HashSet<>();
     }
 
     public int getId() {
@@ -57,5 +60,12 @@ public class Order {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public void addProduct(Product product) {
+        if (product == null) {
+            throw new IllegalArgumentException("Product is null");
+        }
+        this.products.add(product);
     }
 }
