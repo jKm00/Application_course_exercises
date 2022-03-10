@@ -20,6 +20,7 @@ public class ProductController {
      * Returns all the products in the database
      * @return all products in database
      */
+    @CrossOrigin
     @GetMapping
     public ResponseEntity<List<Product>> getProducts() {
         return new ResponseEntity<>(this.service.getProducts(), HttpStatus.OK);
