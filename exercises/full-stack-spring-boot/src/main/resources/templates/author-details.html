@@ -7,7 +7,13 @@
 <body>
 
 <h1 th:text="${author.firstName + ' ' + author.lastName}"></h1>
-<p>TODO - here you could list all the books for this author, with links to book detail page.</p>
+<div th:each="book: ${books}">
+    <ul>
+        <li>Title: <span th:text="${book.getTitle()}"></span></li>
+        <li>Number of pages: <span th:text="${book.getNumberOfPages()}"></span></li>
+        <li>Release year: <span th:text="${book.getYearIssued()}"></span></li>
+    </ul>
+</div>
 
 </body>
 </html>
