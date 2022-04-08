@@ -20,5 +20,14 @@ public class ProductService {
     public List<Product> getProducts() {
         return (List<Product>) this.productRepository.findAll();
     }
+
+    /**
+     * Returns all the featured products from the database
+     *
+     * @return a list of all featured products
+     */
+    public List<Product> getFeatured() {
+        return this.productRepository.findFeatured();
+    }
     // TODO
 }
