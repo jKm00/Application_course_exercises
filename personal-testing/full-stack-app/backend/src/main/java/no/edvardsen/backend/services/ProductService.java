@@ -1,10 +1,15 @@
 package no.edvardsen.backend.services;
 
+import no.edvardsen.backend.entities.Color;
 import no.edvardsen.backend.entities.Product;
+import no.edvardsen.backend.entities.ProductEntry;
+import no.edvardsen.backend.repositories.ColorRepository;
+import no.edvardsen.backend.repositories.ProductEntryRepository;
 import no.edvardsen.backend.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +17,10 @@ import java.util.Optional;
 public class ProductService {
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private ColorRepository colorRepository;
+    @Autowired
+    private ProductEntryRepository productEntryRepository;
 
     /**
      * Returns a list of products
@@ -41,6 +50,27 @@ public class ProductService {
     public Product getProductById(long id) {
         Optional<Product> result = this.productRepository.findById(id);
         return result.orElse(null);
+    }
+
+    /**
+     * Returns all the colors for the product with the id given
+     *
+     * @param id of the product to find the colors to
+     * @return a list of all colors
+     */
+    public List<Color> getColorsByProductId(int id) {
+        // Find all product entries for the product with the id given
+        List<ProductEntry> result = this.productEntryRepository.findColorsForProduct(id);
+        // Create a list where colors are stored
+        List<Color> colors = new ArrayList<>();
+        // Iterate through all product entries
+        for (ProductEntry productEntry : result) {
+            // Get color from color repository by the color if specified in the product entry
+            Optional<Color> color = this.colorRepository.findById(productEntry.getColorId());
+            // Add color to list
+            color.ifPresent(colors::add);
+        }
+        return colors;
     }
     // TODO
 }

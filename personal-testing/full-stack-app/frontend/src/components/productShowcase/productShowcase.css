@@ -10,7 +10,7 @@
 .product-showcase__img {
   display: block;
   width: 100%;
-  max-height: 400px;
+  //max-height: 400px;
   object-fit: cover;
 }
 
@@ -43,6 +43,32 @@
 .product-showcase__body__form__title {
   font-size: 1.6rem;
   margin-bottom: 0.5em;
+}
+
+.product-showcase__body__form--colors {
+  display: flex;
+  gap: 1em;
+}
+
+.color-label {
+  --size: 2em;
+  display: block;
+  height: var(--size);
+  width: var(--size);
+  background-color: var(--clr-main-6);
+  cursor: pointer;
+}
+
+.color-label:checked {
+  background-color: black;
+}
+
+.color-input {
+  display: none;
+}
+
+.color-input:checked + .color-label {
+  outline: 2px solid var(--clr-main-6);
 }
 
 .product-showcase__body__form__select {

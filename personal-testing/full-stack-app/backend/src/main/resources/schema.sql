@@ -6,3 +6,16 @@ CREATE TABLE IF NOT EXISTS products (
     featured INT NOT NULL,
     price FLOAT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS colors (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    color VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS product_entries (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    product_id INTEGER NOT NULL,
+    color_id INTEGER NOT NULL,
+    foreign key (product_id) references products(id),
+    foreign key (color_id) references colors(id)
+);

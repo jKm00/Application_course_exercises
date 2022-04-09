@@ -18,7 +18,6 @@ function ProductPage() {
       .then((response) => response.json())
       .then((result) => {
         setProduct(result);
-        console.log(product);
         setLoading(false);
       });
   }, []);

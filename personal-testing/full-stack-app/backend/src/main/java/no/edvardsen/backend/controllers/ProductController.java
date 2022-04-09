@@ -1,5 +1,6 @@
 package no.edvardsen.backend.controllers;
 
+import no.edvardsen.backend.entities.Color;
 import no.edvardsen.backend.entities.Product;
 import no.edvardsen.backend.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,18 @@ public class ProductController {
     @CrossOrigin
     public List<Product> getFeatured() {
         return this.productService.getFeatured();
+    }
+
+    /**
+     * Returns a list of all colors for the product with the id given
+     *
+     * @param id of the product to get all the colors for
+     * @return a list of all colors
+     */
+    @GetMapping("/colors/{id}")
+    @CrossOrigin
+    public List<Color> getColors(@PathVariable int id) {
+        return this.productService.getColorsByProductId(id);
     }
 
     // TODO
