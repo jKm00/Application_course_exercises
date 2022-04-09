@@ -1,13 +1,7 @@
 package no.edvardsen.backend.services;
 
-import no.edvardsen.backend.entities.Color;
-import no.edvardsen.backend.entities.Product;
-import no.edvardsen.backend.entities.ProductEntry;
-import no.edvardsen.backend.entities.Size;
-import no.edvardsen.backend.repositories.ColorRepository;
-import no.edvardsen.backend.repositories.ProductEntryRepository;
-import no.edvardsen.backend.repositories.ProductRepository;
-import no.edvardsen.backend.repositories.SizeRepository;
+import no.edvardsen.backend.entities.*;
+import no.edvardsen.backend.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +17,8 @@ public class ProductService {
     private ColorRepository colorRepository;
     @Autowired
     private SizeRepository sizeRepository;
+    @Autowired
+    private ProductDetailRepository productDetailRepository;
     @Autowired
     private ProductEntryRepository productEntryRepository;
 
@@ -91,6 +87,11 @@ public class ProductService {
             size.ifPresent(sizes::add);
         }
         return sizes;
+    }
+
+
+    public List<ProductDetail> getDetailsByProductId(int id) {
+        return this.productDetailRepository.findDetailsByProductId(id);
     }
 
     // TODO

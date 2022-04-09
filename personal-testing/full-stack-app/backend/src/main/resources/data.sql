@@ -5,6 +5,23 @@ INSERT INTO products (name, description, sex, featured, price) VALUES ('Winter H
 INSERT INTO products (name, description, sex, featured, price) VALUES ('Water Bottle', 'Hook for easy attachment to a bag', 'unisex', 0, 120);
 INSERT INTO products (name, description, sex, featured, price) VALUES ('Clothes set for Dogs', 'Boots, pants, and a sweater', 'unisex', 0, 6670);
 
+-- Insert details
+-- Boots
+INSERT INTO product_details (product_id, detail) VALUES (1, 'From -15C up to +25C');
+INSERT INTO product_details (product_id, detail) VALUES (1, 'Easy to put on');
+
+-- Sweater
+INSERT INTO product_details (product_id, detail) VALUES (2, '100% wool');
+
+-- Hat
+INSERT INTO product_details (product_id, detail) VALUES (3, '80% Wool, 20% Nylon');
+INSERT INTO product_details (product_id, detail) VALUES (3, 'Fits well on most heads');
+
+-- Bottle
+INSERT INTO product_details (product_id, detail) VALUES (4, 'Lightweight');
+INSERT INTO product_details (product_id, detail) VALUES (4, 'Plastic');
+INSERT INTO product_details (product_id, detail) VALUES (4, 'Volume: 0.7 liter');
+
 -- Insert colors
 INSERT INTO colors (color) VALUES ('black');
 INSERT INTO colors (color) VALUES ('blue');

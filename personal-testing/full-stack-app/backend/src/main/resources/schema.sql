@@ -27,3 +27,10 @@ CREATE TABLE IF NOT EXISTS product_entries (
     foreign key (color_id) references colors(id),
     foreign key (size_id) references sizes(id)
 );
+
+CREATE TABLE IF NOT EXISTS product_details (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    product_id INTEGER NOT NULL,
+    detail VARCHAR(255) NOT NULL,
+    foreign key (product_id) references products(id)
+);

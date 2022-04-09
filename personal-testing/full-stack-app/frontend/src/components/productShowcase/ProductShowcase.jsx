@@ -14,6 +14,9 @@ function ProductShowcase({ id, title, desc, price }) {
     fetchSizes();
   }, []);
 
+  /**
+   * Fetches colors for the product displayed from the api
+   */
   function fetchColors() {
     fetch(COLOR_ULR)
       .then((response) => response.json())
@@ -22,6 +25,9 @@ function ProductShowcase({ id, title, desc, price }) {
       });
   }
 
+  /**
+   * Fetches sizes for the product displayed from the api
+   */
   function fetchSizes() {
     fetch(SIZE_URL)
       .then((response) => response.json())
