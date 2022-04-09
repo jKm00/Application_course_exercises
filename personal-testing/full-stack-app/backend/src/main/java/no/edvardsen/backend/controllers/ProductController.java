@@ -71,6 +71,12 @@ public class ProductController {
         return this.productService.getSizesByProductId(id);
     }
 
+    /**
+     * Returns a list of all details for the product with the id given
+     *
+     * @param id of the product to get all the sizes for
+     * @return a list of all details
+     */
     @GetMapping("/details/{id}")
     @CrossOrigin
     public List<ProductDetail> getDetails(@PathVariable int id) {

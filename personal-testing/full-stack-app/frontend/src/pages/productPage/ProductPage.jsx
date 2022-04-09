@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import ProductShowcase from "../../components/productShowcase/ProductShowcase";
+import Footer from "../../components/footer/Footer";
 
 import "./productPage.css";
 
@@ -23,18 +24,21 @@ function ProductPage() {
   }, []);
 
   return (
-    <div className="product-page">
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <ProductShowcase
-          id={product.id}
-          title={product.name}
-          desc={product.description}
-          price={product.price}
-        />
-      )}
-    </div>
+    <>
+      <div className="product-page">
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <ProductShowcase
+            id={product.id}
+            title={product.name}
+            desc={product.description}
+            price={product.price}
+          />
+        )}
+      </div>
+      <Footer />
+    </>
   );
 }
 

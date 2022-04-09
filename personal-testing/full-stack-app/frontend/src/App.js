@@ -5,7 +5,7 @@ import "./styles/global.css";
 import Nav from "./components/nav/Nav";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/productPage/ProductPage";
-import Footer from "./components/footer/Footer";
+import LoginPage from "./pages/LoginPage";
 
 import "./styles/queries.css";
 
@@ -16,8 +16,8 @@ function App() {
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route path="/products/:id" element={<ProductPage />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
-      <Footer />
     </>
   );
 }

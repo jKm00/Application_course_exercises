@@ -70,9 +70,13 @@ public class ProductService {
     }
 
 
-    public List<ProductDetail> getDetailsByProductId(int id) {
-        return this.productDetailRepository.findDetailsByProductId(id);
-    }
+    /**
+     * Returns all the for a product with the id as given
+     *
+     * @param id the if of the product to get details about
+     * @return a list with every detail for that product
+     */
+    public List<ProductDetail> getDetailsByProductId(int id) { return this.productDetailRepository.findDetailsByProductId(id); }
 
     // TODO
 }
