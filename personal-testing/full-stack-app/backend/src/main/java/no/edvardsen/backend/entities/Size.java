@@ -1,11 +1,9 @@
 package no.edvardsen.backend.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "sizes")
 public class Size {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

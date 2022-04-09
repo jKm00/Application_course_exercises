@@ -3,9 +3,11 @@ package no.edvardsen.backend.services;
 import no.edvardsen.backend.entities.Color;
 import no.edvardsen.backend.entities.Product;
 import no.edvardsen.backend.entities.ProductEntry;
+import no.edvardsen.backend.entities.Size;
 import no.edvardsen.backend.repositories.ColorRepository;
 import no.edvardsen.backend.repositories.ProductEntryRepository;
 import no.edvardsen.backend.repositories.ProductRepository;
+import no.edvardsen.backend.repositories.SizeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,8 @@ public class ProductService {
     private ProductRepository productRepository;
     @Autowired
     private ColorRepository colorRepository;
+    @Autowired
+    private SizeRepository sizeRepository;
     @Autowired
     private ProductEntryRepository productEntryRepository;
 
@@ -72,5 +76,22 @@ public class ProductService {
         }
         return colors;
     }
+
+    /**
+     * Returns all the sizes for the product with the id given
+     *
+     * @param id of the product to find the sizes to
+     * @return a list of all size
+     */
+    public List<Size> getSizesByProductId(int id) {
+        List<Integer> sizeIds = this.productEntryRepository.findSizesForProduct(id);
+        List<Size> sizes = new ArrayList<>();
+        for (Integer sizeId: sizeIds) {
+            Optional<Size> size = this.sizeRepository.findById(sizeId);
+            size.ifPresent(sizes::add);
+        }
+        return sizes;
+    }
+
     // TODO
 }
