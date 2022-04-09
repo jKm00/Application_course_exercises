@@ -9,6 +9,12 @@
   }
 }
 
+@media only screen and (min-width: 990px) {
+  .product-showcase {
+    flex-direction: row;
+  }
+}
+
 @media only screen and (min-width: 1160px) {
   .main {
     grid-template-columns: repeat(3, 1fr);

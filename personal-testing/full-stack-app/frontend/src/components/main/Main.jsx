@@ -21,7 +21,7 @@ function Main() {
   }, []);
 
   return (
-    <main className="main">
+    <main className="main" id="products">
       <h2 className="main__title">Our products</h2>
       {loading ? (
         <p>Loading...</p>
@@ -37,6 +37,7 @@ function Main() {
         ))
       )}
     </main>
+    // TODO: Add about and contact section
   );
 }
 
