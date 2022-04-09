@@ -10,12 +10,16 @@ public class ProductEntry {
     private int id;
     private int productId;
     private int colorId;
+    private int sizeId;
+    private int quantity;
 
     public ProductEntry() {}
 
-    public ProductEntry(int productId, int colorId) {
+    public ProductEntry(int productId, int colorId, int sizeId, int quantity) {
         this.productId = productId;
         this.colorId = colorId;
+        this.sizeId = sizeId;
+        this.quantity = quantity;
     }
 
     public int getId() {
@@ -40,5 +44,21 @@ public class ProductEntry {
 
     public void setColorId(int colorId) {
         this.colorId = colorId;
+    }
+
+    public int getSizeId() {
+        return sizeId;
+    }
+
+    public void setSizeId(int sizeId) {
+        this.sizeId = sizeId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

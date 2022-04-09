@@ -60,13 +60,13 @@ public class ProductService {
      */
     public List<Color> getColorsByProductId(int id) {
         // Find all product entries for the product with the id given
-        List<ProductEntry> result = this.productEntryRepository.findColorsForProduct(id);
+        List<Integer> colorIds = this.productEntryRepository.findColorsForProduct(id);
         // Create a list where colors are stored
         List<Color> colors = new ArrayList<>();
         // Iterate through all product entries
-        for (ProductEntry productEntry : result) {
+        for (Integer colorId : colorIds) {
             // Get color from color repository by the color if specified in the product entry
-            Optional<Color> color = this.colorRepository.findById(productEntry.getColorId());
+            Optional<Color> color = this.colorRepository.findById(colorId);
             // Add color to list
             color.ifPresent(colors::add);
         }
