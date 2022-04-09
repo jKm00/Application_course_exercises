@@ -56,7 +56,7 @@ export default function Header() {
                 <h2 className="swiper__content__title">{feature.name}</h2>
                 <p className="swiper__content__desc">{feature.description}</p>
                 <Link
-                  to={"/product/" + feature.id}
+                  to={"/products/" + feature.id}
                   className="swiper__link btn"
                 >
                   See more
