@@ -10,6 +10,7 @@ function Nav() {
     window.scrollTo(0, 0);
   }
 
+  // TODO: Fix nav bar for mobile
   return (
     <>
       <div className="nav--wrapper"></div>
