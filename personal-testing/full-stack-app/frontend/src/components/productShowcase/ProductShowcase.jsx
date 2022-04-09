@@ -79,19 +79,19 @@ function ProductShowcase({ id, title, desc, price }) {
             {colors.length === 0 ? (
               <p>Loading...</p>
             ) : (
-              colors.map((color) => (
-                <div key={color.id} className="color-input--wrapper">
+              colors.map((color, index) => (
+                <div key={index} className="color-input--wrapper">
                   <input
-                    id={color.id}
+                    id={index}
                     type="radio"
                     name="color"
-                    value={color.color}
+                    value={color}
                     className="color-input"
                   />
                   <label
-                    htmlFor={color.id}
+                    htmlFor={index}
                     className="color-label"
-                    style={{ backgroundColor: color.color }}
+                    style={{ backgroundColor: color }}
                   ></label>
                 </div>
               ))
@@ -108,9 +108,9 @@ function ProductShowcase({ id, title, desc, price }) {
               {sizes.length === 0 ? (
                 <option value="loading">loading...</option>
               ) : (
-                sizes.map((size) => (
-                  <option key={size.id} value={size.sizeValue}>
-                    {size.sizeValue}
+                sizes.map((size, index) => (
+                  <option key={index} value={size}>
+                    {size}
                   </option>
                 ))
               )}

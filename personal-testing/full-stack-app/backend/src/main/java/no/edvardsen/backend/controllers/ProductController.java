@@ -1,9 +1,7 @@
 package no.edvardsen.backend.controllers;
 
-import no.edvardsen.backend.entities.Color;
 import no.edvardsen.backend.entities.Product;
 import no.edvardsen.backend.entities.ProductDetail;
-import no.edvardsen.backend.entities.Size;
 import no.edvardsen.backend.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -57,7 +55,7 @@ public class ProductController {
      */
     @GetMapping("/colors/{id}")
     @CrossOrigin
-    public List<Color> getColors(@PathVariable int id) {
+    public List<String> getColors(@PathVariable int id) {
         return this.productService.getColorsByProductId(id);
     }
 
@@ -69,7 +67,7 @@ public class ProductController {
      */
     @GetMapping("/sizes/{id}")
     @CrossOrigin
-    public List<Size> getSizes(@PathVariable int id) {
+    public List<String> getSizes(@PathVariable int id) {
         return this.productService.getSizesByProductId(id);
     }
 
