@@ -3,17 +3,32 @@ import "./productShowcase.css";
 import { useState, useEffect } from "react";
 
 function ProductShowcase({ id, title, desc, price }) {
-  const ULR = "http://localhost:8080/api/products/colors/" + id;
+  const COLOR_ULR = "http://localhost:8080/api/products/colors/" + id;
+  const SIZE_URL = "http://localhost:8080/api/products/sizes/" + id;
 
   const [colors, setColors] = useState([]);
+  const [sizes, setSizes] = useState([]);
 
   useEffect(() => {
-    fetch(ULR)
+    fetchColors();
+    fetchSizes();
+  }, []);
+
+  function fetchColors() {
+    fetch(COLOR_ULR)
       .then((response) => response.json())
       .then((result) => {
         setColors(result);
       });
-  }, []);
+  }
+
+  function fetchSizes() {
+    fetch(SIZE_URL)
+      .then((response) => response.json())
+      .then((result) => {
+        setSizes(result);
+      });
+  }
 
   return (
     <section className="product-showcase">
@@ -65,17 +80,15 @@ function ProductShowcase({ id, title, desc, price }) {
               name="sizes"
               className="product-showcase__body__form__select"
             >
-              <option value="37">37</option>
-              <option value="38">38</option>
-              <option value="39">39</option>
-              <option value="40">40</option>
-              <option value="41">41</option>
-              <option value="42">42</option>
-              <option value="43">43</option>
-              <option value="44">44</option>
-              <option value="45">45</option>
-              <option value="46">46</option>
-              <option value="47">47</option>
+              {sizes.length === 0 ? (
+                <option value="loading">loading...</option>
+              ) : (
+                sizes.map((size) => (
+                  <option key={size.id} value={size.sizeValue}>
+                    {size.sizeValue}
+                  </option>
+                ))
+              )}
             </select>
           </fieldset>
           <button
