@@ -3,10 +3,7 @@ package no.edvardsen.backend.controllers;
 import no.edvardsen.backend.entities.Product;
 import no.edvardsen.backend.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +21,18 @@ public class ProductController {
     @CrossOrigin
     public List<Product> getProducts() {
         return productService.getProducts();
+    }
+
+    /**
+     * Returns a product with the id given
+     *
+     * @param id the id of the product to find
+     * @return product with the id given
+     */
+    @GetMapping("/{id}")
+    @CrossOrigin
+    public Product getProductById(@PathVariable int id) {
+        return this.productService.getProductById(id);
     }
 
     /**

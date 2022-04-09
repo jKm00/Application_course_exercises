@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -28,6 +29,18 @@ public class ProductService {
      */
     public List<Product> getFeatured() {
         return this.productRepository.findFeatured();
+    }
+
+    /**
+     * Returns a product with the id given. If no product is found
+     * {@code null} will be returned
+     *
+     * @param id the id of the product to find
+     * @return product with the id given
+     */
+    public Product getProductById(long id) {
+        Optional<Product> result = this.productRepository.findById(id);
+        return result.orElse(null);
     }
     // TODO
 }
