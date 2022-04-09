@@ -3,22 +3,33 @@ import "./productShowcase.css";
 import { useState, useEffect } from "react";
 
 function ProductShowcase({ id, title, desc, price }) {
-  const COLOR_ULR = "http://localhost:8080/api/products/colors/" + id;
+  const DETAIL_URL = "http://localhost:8080/api/products/details/" + id;
+  const COLOR_URL = "http://localhost:8080/api/products/colors/" + id;
   const SIZE_URL = "http://localhost:8080/api/products/sizes/" + id;
 
+  const [details, setDetails] = useState([]);
   const [colors, setColors] = useState([]);
   const [sizes, setSizes] = useState([]);
 
   useEffect(() => {
+    fetchDetails();
     fetchColors();
     fetchSizes();
   }, []);
+
+  function fetchDetails() {
+    fetch(DETAIL_URL)
+      .then((response) => response.json())
+      .then((result) => {
+        setDetails(result);
+      });
+  }
 
   /**
    * Fetches colors for the product displayed from the api
    */
   function fetchColors() {
-    fetch(COLOR_ULR)
+    fetch(COLOR_URL)
       .then((response) => response.json())
       .then((result) => {
         setColors(result);
@@ -49,9 +60,17 @@ function ProductShowcase({ id, title, desc, price }) {
           <p className="product-showcase__body__desc">{desc}</p>
           <p className="product-showcase__body__price">{price},-</p>
         </div>
-        {
-          // TODO: Update form based on product. Need some backend work
-        }
+        {details.length === 0 ? (
+          <p>Loading...</p>
+        ) : (
+          <ul className="product-showcase__body__details">
+            {details.map((detail) => (
+              <li key={detail.id} className="product-showcase__body__detail">
+                {detail.detail}
+              </li>
+            ))}
+          </ul>
+        )}
         <form>
           <fieldset className="product-showcase__body__form product-showcase__body__form--colors">
             <legend className="product-showcase__body__form__title">

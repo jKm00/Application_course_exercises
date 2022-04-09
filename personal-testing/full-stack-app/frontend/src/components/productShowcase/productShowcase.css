@@ -16,6 +16,7 @@
 .product-showcase__body {
   display: flex;
   flex-direction: column;
+  gap: 2em;
   justify-content: space-between;
   background-color: #fff;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -30,6 +31,11 @@
 .product-showcase__body__price {
   font-size: 3rem;
   font-weight: bold;
+}
+
+.product-showcase__body__details {
+  font-size: 1.2rem;
+  margin-left: 1.6em;
 }
 
 .product-showcase__body__form {

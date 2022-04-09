@@ -1,4 +1,5 @@
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { HashLink as Link } from "react-router-hash-link";
 
 import "./nav.css";
 
@@ -13,7 +14,7 @@ function Nav() {
   // TODO: Fix nav bar for mobile
   return (
     <>
-      <div className="nav--wrapper"></div>
+      <div id="top" className="nav--wrapper"></div>
       <nav className="nav">
         <div className="nav__list--wrapper">
           <p className="logo" onClick={scrollToTop}>
@@ -21,9 +22,9 @@ function Nav() {
           </p>
           <ul className="nav__list">
             <li className="nav__item">
-              <a href="#products" className="nav__link">
+              <Link to="/#products" className="nav__link">
                 Products
-              </a>
+              </Link>
             </li>
             <li className="nav__item">
               <a href="#about" className="nav__link">
