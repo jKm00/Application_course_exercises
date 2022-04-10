@@ -1,10 +1,29 @@
 .user-form {
   background-color: #fff;
+  border-radius: 5px;
   width: 90%;
   max-width: 400px;
   margin: 10em auto 2em auto;
   padding: 6em 4em;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-form--two-column {
+  display: grid;
+  column-gap: 4em;
+  row-gap: 2em;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 800px;
+}
+
+.user-form--two-column .user-form__title {
+  margin-bottom: 0.5em;
+}
+
+.user-form--two-column .user-form__title,
+.user-form--two-column .user-form__btn,
+.user-form--two-column .user-form__register {
+  grid-column: 1 / -1;
 }
 
 .user-form--wrapper {
@@ -22,6 +41,13 @@
 
 .user-form__input--wrapper {
   position: relative;
+}
+
+.user-form__input--wrapper--centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
 }
 
 .user-form__input {
@@ -45,9 +71,18 @@
   transition: transform 200ms ease-in-out;
 }
 
+.user-form__label--checkbox {
+  font-size: 1.4rem;
+}
+
 .user-form__input:focus + .user-form__label,
 .user-form__input:valid + .user-form__label {
   transform: scale(0.8) translateY(-200%) translateX(-10%);
+}
+
+.user-form__input__label__link {
+  font-size: inherit;
+  color: inherit;
 }
 
 .user-form__btn {
