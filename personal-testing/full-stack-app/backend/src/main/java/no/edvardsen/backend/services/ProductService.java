@@ -17,6 +17,10 @@ public class ProductService {
     private ProductDetailRepository productDetailRepository;
     @Autowired
     private ProductEntryRepository productEntryRepository;
+    @Autowired
+    private ColorRepository colorRepository;
+    @Autowired
+    private SizeRepository sizeRepository;
 
     /**
      * Returns a list of products
@@ -55,8 +59,15 @@ public class ProductService {
      * @return a list of all colors
      */
     public List<String> getColorsByProductId(int id) {
-        // Find all product entries for the product with the id given
-        return this.productEntryRepository.findColorsForProduct(id);
+        List<Integer> colorIds = this.productEntryRepository.findColorsForProduct(id);
+        List<String> colors = new ArrayList<>();
+        for (int colorId : colorIds) {
+            // Get color from color repo
+            Optional<Color> color = this.colorRepository.findById(colorId);
+            // Add to list with colors
+            color.ifPresent(value -> colors.add(value.getColorValue()));
+        }
+        return colors;
     }
 
     /**
@@ -66,7 +77,13 @@ public class ProductService {
      * @return a list of all size
      */
     public List<String> getSizesByProductId(int id) {
-        return this.productEntryRepository.findSizesForProduct(id);
+        List<Integer> sizeIds = this.productEntryRepository.findSizesForProduct(id);
+        List<String> sizes = new ArrayList<>();
+        for (int sizeId : sizeIds) {
+            Optional<Size> size = this.sizeRepository.findById(sizeId);
+            size.ifPresent(value -> sizes.add(value.getSizeValue()));
+        }
+        return sizes;
     }
 
 

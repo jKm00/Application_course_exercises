@@ -53,7 +53,7 @@ public class ProductController {
      * @param id of the product to get all the colors for
      * @return a list of all colors
      */
-    @GetMapping("/colors/{id}")
+    @GetMapping("/{id}/colors")
     @CrossOrigin
     public List<String> getColors(@PathVariable int id) {
         return this.productService.getColorsByProductId(id);
@@ -65,7 +65,7 @@ public class ProductController {
      * @param id of the product to get all the sizes for
      * @return a list of all size
      */
-    @GetMapping("/sizes/{id}")
+    @GetMapping("/{id}/sizes")
     @CrossOrigin
     public List<String> getSizes(@PathVariable int id) {
         return this.productService.getSizesByProductId(id);
@@ -77,7 +77,7 @@ public class ProductController {
      * @param id of the product to get all the sizes for
      * @return a list of all details
      */
-    @GetMapping("/details/{id}")
+    @GetMapping("/{id}/details")
     @CrossOrigin
     public List<ProductDetail> getDetails(@PathVariable int id) {
         return this.productService.getDetailsByProductId(id);

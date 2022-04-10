@@ -22,70 +22,97 @@ INSERT INTO product_details (product_id, detail) VALUES (4, 'Lightweight');
 INSERT INTO product_details (product_id, detail) VALUES (4, 'Plastic');
 INSERT INTO product_details (product_id, detail) VALUES (4, 'Volume: 0.7 liter');
 
+-- Insert colors
+INSERT INTO colors (color_value) VALUES ('black');
+INSERT INTO colors (color_value) VALUES ('blue');
+INSERT INTO colors (color_value) VALUES ('red');
+INSERT INTO colors (color_value) VALUES ('green');
+INSERT INTO colors (color_value) VALUES ('orange');
+INSERT INTO colors (color_value) VALUES ('transparent');
+
+-- Insert sizes
+INSERT INTO sizes (size_value) VALUES ('XS');
+INSERT INTO sizes (size_value) VALUES ('S');
+INSERT INTO sizes (size_value) VALUES ('M');
+INSERT INTO sizes (size_value) VALUES ('L');
+INSERT INTO sizes (size_value) VALUES ('37');
+INSERT INTO sizes (size_value) VALUES ('38');
+INSERT INTO sizes (size_value) VALUES ('39');
+INSERT INTO sizes (size_value) VALUES ('40');
+INSERT INTO sizes (size_value) VALUES ('41');
+INSERT INTO sizes (size_value) VALUES ('42');
+INSERT INTO sizes (size_value) VALUES ('43');
+INSERT INTO sizes (size_value) VALUES ('44');
+INSERT INTO sizes (size_value) VALUES ('45');
+INSERT INTO sizes (size_value) VALUES ('46');
+INSERT INTO sizes (size_value) VALUES ('47');
+INSERT INTO sizes (size_value) VALUES ('Fits all');
+INSERT INTO sizes (size_value) VALUES ('Small dogs');
+
 -- Insert product entries
 -- Boots, black
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'black', '37', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'black', '38', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'black', '39', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'black', '40', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'black', '41', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'black', '42', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'black', '43', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'black', '44', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'black', '45', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'black', '46', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'black', '47', 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 1, 5, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 1, 6, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 1, 7, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 1, 8, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 1, 9, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 1, 10, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 1, 11, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 1, 12, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 1, 13, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 1, 14, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 1, 15, 50);
 
 -- Boots, blue
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'blue', '37', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'blue', '38',0);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'blue', '39', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'blue', '40', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'blue', '41', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'blue', '42', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'blue', '43', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'blue', '44', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'blue', '45', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'blue', '46', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'blue', '47', 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 2, 5, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 2, 6,0);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 2, 7, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 2, 8, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 2, 9, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 2, 10, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 2, 11, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 2, 12, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 2, 13, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 2, 14, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 2, 15, 50);
 
 -- Boots, red
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'red', '37', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'red', '38', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'red', '39', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'red', '40', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'red', '41', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'red', '42', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'red', '43', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'red', '44', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'red', '45', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'red', '46', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (1, 'red', '47', 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 3, 5, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 3, 6, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 3, 7, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 3, 8, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 3, 9, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 3, 10, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 3, 11, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 3, 12, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 3, 13, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 3, 14, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (1, 3, 15, 50);
 
 -- Sweater, green
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (2, 'green', 'XS', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (2, 'green', 'S', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (2, 'green', 'M', 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (2, 4, 1, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (2, 4, 2, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (2, 4, 3, 50);
 
 -- Sweater, orange
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (2, 'orange', 'XS', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (2, 'orange', 'S', 50);
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (2, 'orange', 'M', 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (2, 5, 1, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (2, 5, 2, 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (2, 5, 3, 50);
 
 -- Hat, black
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (3, 'black', 'Fits all', 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (3, 1, 16, 50);
 
 -- Bottle, blue
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (4, 'blue', 'Fits all', 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (4, 2, 16, 50);
 
 -- Bottle, red
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (4, 'red', 'Fits all', 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (4, 3, 16, 50);
 
 -- Bottle, transparent
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (4, 'transparent', 'Fits all', 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (4, 6, 16, 50);
 
 -- Dog set, green
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (5, 'green', 'Small dogs', 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (5, 4, 17, 50);
 
 -- Dog set, orange
-INSERT INTO product_entries (product_id, color, size_value, quantity) VALUES (5, 'orange', 'Small dogs', 50);
+INSERT INTO product_entries (product_id, color_id, size_id, quantity) VALUES (5, 5, 17, 50);

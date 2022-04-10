@@ -3,9 +3,9 @@ import "./productShowcase.css";
 import { useState, useEffect } from "react";
 
 function ProductShowcase({ id, title, desc, price }) {
-  const DETAIL_URL = "http://localhost:8080/api/products/details/" + id;
-  const COLOR_URL = "http://localhost:8080/api/products/colors/" + id;
-  const SIZE_URL = "http://localhost:8080/api/products/sizes/" + id;
+  const DETAIL_URL = "http://localhost:8080/api/products/" + id + "/details";
+  const COLOR_URL = "http://localhost:8080/api/products/" + id + "/colors";
+  const SIZE_URL = "http://localhost:8080/api/products/" + id + "/sizes";
 
   const [details, setDetails] = useState([]);
   const [colors, setColors] = useState([]);

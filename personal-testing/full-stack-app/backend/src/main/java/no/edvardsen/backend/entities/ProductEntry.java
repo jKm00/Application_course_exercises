@@ -9,16 +9,16 @@ public class ProductEntry {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int productId;
-    private String color;
-    private String sizeValue;
+    private int colorId;
+    private int sizeId;
     private int quantity;
 
     public ProductEntry() {}
 
-    public ProductEntry(int productId, String color, String sizeValue, int quantity) {
+    public ProductEntry(int productId, int colorId, int sizeId, int quantity) {
         this.productId = productId;
-        this.color = color;
-        this.sizeValue = sizeValue;
+        this.colorId = colorId;
+        this.sizeId = sizeId;
         this.quantity = quantity;
     }
 
@@ -38,20 +38,20 @@ public class ProductEntry {
         this.productId = productId;
     }
 
-    public String getColor() {
-        return color;
+    public int getColorId() {
+        return colorId;
     }
 
-    public void setColor(String colorId) {
-        this.color = colorId;
+    public void setColorId(int colorId) {
+        this.colorId = colorId;
     }
 
-    public String getSizeValue() {
-        return sizeValue;
+    public int getSizeId() {
+        return sizeId;
     }
 
-    public void setSizeId(String sizeValue) {
-        this.sizeValue = sizeValue;
+    public void setSizeId(int sizeValue) {
+        this.sizeId = sizeValue;
     }
 
     public int getQuantity() {
