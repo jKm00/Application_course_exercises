@@ -5,38 +5,33 @@ import "../styles/userForm.css";
 export default function LoginPage() {
   return (
     <div className="login">
-      <form action="" className="user-form">
-        <fieldset className="user-form--wrapper">
-          <legend className="user-form__title">Login</legend>
-          <div className="user-form__input--wrapper">
-            <input
-              id="username"
-              type="text"
-              className="user-form__input"
-              required
-            />
-            <label htmlFor="username" className="user-form__label">
+      <form action="" className="form">
+        <fieldset className="form--wrapper">
+          <legend className="form__title">Login</legend>
+          <div className="form__input--wrapper">
+            <input id="username" type="text" className="form__input" required />
+            <label htmlFor="username" className="form__label">
               Username / Email
             </label>
           </div>
-          <div className="user-form__input--wrapper">
+          <div className="form__input--wrapper">
             <input
               id="password"
               type="password"
-              className="user-form__input"
+              className="form__input"
               required
             />
-            <label htmlFor="password" className="user-form__label">
+            <label htmlFor="password" className="form__label">
               Password
             </label>
           </div>
-          <button type="submit" className="btn user-form__btn">
+          <button type="submit" className="btn form__btn">
             Login
           </button>
         </fieldset>
-        <p className="user-form__register">
+        <p className="form__register">
           Don't have an account?{" "}
-          <Link to="/signup" className="user-form__register__link">
+          <Link to="/signup" className="form__register__link">
             Register here
           </Link>
         </p>

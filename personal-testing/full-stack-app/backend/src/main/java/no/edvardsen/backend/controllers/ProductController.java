@@ -2,8 +2,11 @@ package no.edvardsen.backend.controllers;
 
 import no.edvardsen.backend.entities.Product;
 import no.edvardsen.backend.entities.ProductDetail;
+import no.edvardsen.backend.requests.AddProductRequest;
 import no.edvardsen.backend.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -82,6 +85,5 @@ public class ProductController {
     public List<ProductDetail> getDetails(@PathVariable int id) {
         return this.productService.getDetailsByProductId(id);
     }
-
     // TODO
 }

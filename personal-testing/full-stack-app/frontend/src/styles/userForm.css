@@ -1,4 +1,7 @@
-.user-form {
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
   background-color: #fff;
   border-radius: 5px;
   width: 90%;
@@ -8,7 +11,7 @@
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-.user-form--two-column {
+.form--two-column {
   display: grid;
   column-gap: 4em;
   row-gap: 2em;
@@ -16,51 +19,55 @@
   max-width: 800px;
 }
 
-.user-form--two-column .user-form__title {
+.form--two-column .form__title {
   margin-bottom: 0.5em;
 }
 
-.user-form--two-column .user-form__title,
-.user-form--two-column .user-form__btn,
-.user-form--two-column .user-form__register {
+.form--two-column .form__title,
+.form--two-column .form__btn,
+.form--two-column .form__register {
   grid-column: 1 / -1;
 }
 
-.user-form--wrapper {
+.form--wrapper {
   display: flex;
   flex-direction: column;
   gap: 2em;
   border: none;
 }
 
-.user-form__title {
+.form__title {
   font-weight: bold;
   font-size: 3rem;
   margin-bottom: 1em;
 }
 
-.user-form__input--wrapper {
+.form__title--small {
+  font-size: 1.5rem;
+}
+
+.form__input--wrapper {
   position: relative;
 }
 
-.user-form__input--wrapper--centered {
+.form__input--wrapper--centered {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1em;
 }
 
-.user-form__input {
+.form__input {
   padding: 1em;
   width: 100%;
   outline: none;
 }
 
-.user-form__input:focus {
+.form__input:focus {
   border: 2px solid var(--clr-main-6);
 }
 
-.user-form__label {
+.form__label {
   position: absolute;
   left: 0.5em;
   top: 50%;
@@ -71,37 +78,37 @@
   transition: transform 200ms ease-in-out;
 }
 
-.user-form__label--checkbox {
+.form__label--checkbox {
   font-size: 1.4rem;
 }
 
-.user-form__input:focus + .user-form__label,
-.user-form__input:valid + .user-form__label {
+.form__input:focus + .form__label,
+.form__input:valid + .form__label {
   transform: scale(0.8) translateY(-200%) translateX(-10%);
 }
 
-.user-form__input__label__link {
+.form__input__label__link {
   font-size: inherit;
   color: inherit;
 }
 
-.user-form__btn {
+.form__btn {
   padding: 1em;
   margin-bottom: 1em;
 }
 
-.user-form__register {
+.form__register {
   font-size: 1.2em;
   text-align: center;
 }
 
-.user-form__register__link {
+.form__register__link {
   color: inherit;
   font-size: inherit;
 }
 
-.user-form__register__link:hover,
-.user-form__register__link:focus {
+.form__register__link:hover,
+.form__register__link:focus {
   color: var(--clr-main-9);
 }
 
