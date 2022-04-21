@@ -1,0 +1,113 @@
+/* ================
+  Resets
+  ================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  border: none;
+  background: transparent;
+}
+
+/* ================
+  Global
+  ================= */
+
+:root {
+  --clr-main-1: #f4fce3;
+  --clr-main-2: #e9fac8;
+  --clr-main-3: #d8f5a2;
+  --clr-main-4: #a9e34b;
+  --clr-main-5: #94d82d;
+  --clr-main-6: #82c91e;
+  --clr-main-7: #74b816;
+  --clr-main-8: #66a80f;
+  --clr-main-9: #5c940d;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #eee;
+}
+
+img {
+  max-width: 100%;
+}
+
+.logo {
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--clr-main-9);
+  cursor: pointer;
+}
+
+.btn {
+  background-color: var(--clr-main-6);
+  color: #fff;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-radius: 2px;
+
+  transition: background-color 150ms ease-in-out;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: var(--clr-main-9);
+}
+
+/* ================
+  Typography
+  ================= */
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #1d1d1d;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 4.883rem;
+}
+
+h2 {
+  font-size: 3.906rem;
+}
+
+h3 {
+  font-size: 3.125rem;
+}
+
+h4 {
+  font-size: 2.5rem;
+}
+
+h5 {
+  font-size: 2rem;
+}
+
+p,
+a {
+  font-size: 1.6rem;
+  line-height: 1.5em;
+}
