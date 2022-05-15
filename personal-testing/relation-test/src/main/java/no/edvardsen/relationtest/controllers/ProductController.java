@@ -32,4 +32,12 @@ public class ProductController {
         }
         return new ResponseEntity<>("Could not add product " + productDetails.getTitle(), HttpStatus.CONFLICT);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> removeProduct(@PathVariable Long id) {
+        if (this.productService.removeProduct(id) != null) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>("No product with id " + id, HttpStatus.BAD_REQUEST);
+    }
 }

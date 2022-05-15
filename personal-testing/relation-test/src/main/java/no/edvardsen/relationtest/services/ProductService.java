@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -51,5 +52,21 @@ public class ProductService {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    /**
+     * Removes a product from the database
+     * @param id of the product to remove
+     * @return the product that was deleted on deletion, or null if no product was found with the id
+     * given resulting in no deletion.
+     */
+    public Product removeProduct(Long id) {
+        Product product = null;
+        Optional<Product> result = this.productRepository.findById(id);
+        if (result.isPresent()) {
+            product = result.get();
+            this.productRepository.delete(product);
+        }
+        return product;
     }
 }
