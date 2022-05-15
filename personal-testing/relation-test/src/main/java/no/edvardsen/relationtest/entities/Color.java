@@ -3,6 +3,7 @@ package no.edvardsen.relationtest.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
@@ -14,14 +15,21 @@ public class Color {
     @Column(name = "color")
     private String color;
 
-    @ManyToMany(mappedBy = "colors")
-    @JsonIgnore
-    private Set<Product> products;
+    @OneToMany(mappedBy = "color")
+    private Set<ProductEntry> productEntries = new LinkedHashSet<>();
 
     public Color() {}
 
     public Color(String color) {
         this.color = color;
+    }
+
+    /**
+     * Adds a product entry to the color
+     * @param productEntry to be added
+     */
+    public void addProductEntry(ProductEntry productEntry) {
+        this.productEntries.add(productEntry);
     }
 
     public long getId() {
@@ -40,11 +48,11 @@ public class Color {
         this.color = color;
     }
 
-    public Set<Product> getProducts() {
-        return products;
+    public Set<ProductEntry> getProductEntries() {
+        return productEntries;
     }
 
-    public void setProducts(Set<Product> products) {
-        this.products = products;
+    public void setProductEntries(Set<ProductEntry> productEntries) {
+        this.productEntries = productEntries;
     }
 }

@@ -19,13 +19,8 @@ public class Product {
     @Column(name = "price")
     private float price;
 
-    @ManyToMany
-    @JoinTable(
-            name = "product_colors",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "color_id")
-    )
-    private Set<Color> colors = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "product")
+    private Set<ProductEntry> productEntries = new LinkedHashSet<>();
 
     public Product() {}
 
@@ -36,11 +31,11 @@ public class Product {
     }
 
     /**
-     * Adds a color to the product
-     * @param color to be added
+     * Adds a product entry to the product
+     * @param productEntry to be added
      */
-    public void addColor(Color color) {
-        this.colors.add(color);
+    public void addProductEntry(ProductEntry productEntry) {
+        this.productEntries.add(productEntry);
     }
 
     public long getId() {
@@ -75,11 +70,11 @@ public class Product {
         this.price = price;
     }
 
-    public Set<Color> getColors() {
-        return colors;
+    public Set<ProductEntry> getProductEntries() {
+        return productEntries;
     }
 
-    public void setColors(Set<Color> colors) {
-        this.colors = colors;
+    public void setProductEntries(Set<ProductEntry> productEntries) {
+        this.productEntries = productEntries;
     }
 }

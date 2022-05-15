@@ -1,7 +1,5 @@
 package no.edvardsen.relationtest.services;
 
-import no.edvardsen.relationtest.dto.AddProductRequest;
-import no.edvardsen.relationtest.entities.Color;
 import no.edvardsen.relationtest.entities.Product;
 import no.edvardsen.relationtest.repositories.ColorRepository;
 import no.edvardsen.relationtest.repositories.ProductRepository;
@@ -9,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -37,21 +34,7 @@ public class ProductService {
      * @return true if product was successfully added, false otherwise
      */
     public boolean addProduct(String title, String desc, float price, List<String> colors) {
-        try {
-            Product product = new Product(title, desc, price);
-            for (String color : colors) {
-                Color colorFound = this.colorRepository.findByColor(color);
-                if (colorFound == null) {
-                    colorFound = new Color(color);
-                    this.colorRepository.save(colorFound);
-                }
-                product.addColor(colorFound);
-            }
-            this.productRepository.save(product);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        return true;
     }
 
     /**
@@ -61,12 +44,6 @@ public class ProductService {
      * given resulting in no deletion.
      */
     public Product removeProduct(Long id) {
-        Product product = null;
-        Optional<Product> result = this.productRepository.findById(id);
-        if (result.isPresent()) {
-            product = result.get();
-            this.productRepository.delete(product);
-        }
-        return product;
+        return null;
     }
 }
